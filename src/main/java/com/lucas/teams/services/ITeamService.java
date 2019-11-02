@@ -7,4 +7,6 @@ import java.util.List;
 public interface ITeamService {
     List<Team> getAll();
     Team create(Team team);
+    Team update(Team team);
+    Team getOne(Integer id);
 }

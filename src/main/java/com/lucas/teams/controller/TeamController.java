@@ -18,15 +18,28 @@ public class TeamController {
     public TeamController(ITeamService teamService){
         this.teamService = teamService;
     }
-    @GetMapping
+    @GetMapping(value = "/list")
     public ResponseEntity<List<Team>> getAll(){
         List<Team> teams = teamService.getAll();
         return ResponseEntity.ok().body(teams);
     }
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Team> create(@RequestBody Team team){
         Team create = teamService.create(team);
         return new ResponseEntity<>(create, HttpStatus.OK);
     }
+
+    @PutMapping()
+    public ResponseEntity<Team> update(@RequestBody Team team){
+        Team update = teamService.update(team);
+        return ResponseEntity.ok().body(team);
+    }
+    @GetMapping("{id}")
+    public ResponseEntity<Team> getOne(@PathVariable Integer id){
+        Team team = teamService.getOne(id);
+        return ResponseEntity.ok().body(team);
+    }
+
+
 }
